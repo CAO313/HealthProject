@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/checkitem")
 public class CheckItemController {
@@ -63,6 +65,17 @@ public class CheckItemController {
         }
         catch (Exception e){
             return new Result(false,"获取该用户失败");
+        }
+    }
+    @RequestMapping("/findAll")
+    public Result findAll(){
+        try{
+           List<CheckItem> list = checkItemService.findAll();
+           return  new Result(true, MessageConstant.QUERY_CHECKITEM_SUCCESS, list);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return  new Result(false,MessageConstant.QUERY_CHECKITEM_FAIL);
         }
     }
 }

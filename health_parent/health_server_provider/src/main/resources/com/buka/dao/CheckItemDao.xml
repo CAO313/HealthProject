@@ -56,4 +56,7 @@
     <select id="findById" resultType="com.buka.pojo.CheckItem">
         select * from t_checkitem where id = #{id}
     </select>
+    <select id="findAll" resultType="com.buka.pojo.CheckItem">
+        select * from t_checkitem
+    </select>
 </mapper>

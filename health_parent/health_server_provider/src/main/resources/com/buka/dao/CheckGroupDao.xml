@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buka.dao.CheckGroupDao">
+
+    <insert id="add" parameterType="com.buka.pojo.CheckGroup">
+<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+    select LAST_INSERT_ID()
+</selectKey>
+        insert into t_checkgroup(code,name,helpCode,sex,remark,attention) values (#{code},#{name},#{helpCode},#{sex},#{remark},#{attention})
+    </insert>
+
+    <insert id="setCheckGroupAndCheckItem" parameterType="map">
+        insert into t_checkgroup_checkitem(checkgroup_id,checkitem_id) values (#{checkGroupId},#{checkItemId})
+    </insert>
+    <select id="findPage" resultType="com.buka.pojo.CheckGroup">
+        select * from t_checkgroup
+        <if test="queryString != null and queryString.length>0">
+            where code = #{queryString} or name=#{queryString}
+        </if>
+    </select>
+    <select id="findById" resultType="com.buka.pojo.CheckGroup">
+        select * from t_checkgroup where id = #{id}
+    </select>
+    <select id="getCheckItemIdsById" resultType="java.lang.Integer">
+        select checkitem_id from t_checkgroup_checkitem where checkgroup_id = #{id}
+    </select>
+    <update id="updateCheckGroup" parameterType="com.buka.pojo.CheckGroup">
+        update t_checkgroup
+        <set>
+            <if test="code!=null">
+                code = #{code},
+            </if>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="helpCode!=null">
+                helpCode = #{helpCode},
+            </if>
+            <if test="sex!=null">
+                sex = #{sex},
+            </if>
+            <if test="remark!=null">
+                remark = #{remark},
+            </if>
+            <if test="attention!=null">
+                attention = #{attention},
+            </if>
+        </set>
+            where id = #{id}
+    </update>
+    <delete id="deleteRelated" parameterType="java.lang.Integer">
+        delete from t_checkgroup_checkitem where checkgroup_id = #{id}
+    </delete>
+    <select id="count" resultType="java.lang.Integer">
+        select count(*) from t_checkgroup_checkitem where checkgroup_id = #{id}
+    </select>
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from t_checkgroup where id = #{id}
+    </delete>
+</mapper>

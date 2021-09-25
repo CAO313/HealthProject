@@ -4,6 +4,8 @@ import com.buka.entity.PageResult;
 import com.buka.entity.QueryPageBean;
 import com.buka.pojo.CheckItem;
 
+import java.util.List;
+
 public interface CheckItemService {
     void add(CheckItem checkItem);
     PageResult findPage(QueryPageBean queryPageBean);
@@ -13,4 +15,6 @@ public interface CheckItemService {
     void edit(CheckItem checkItem);
 
     CheckItem findById(Integer id);
+
+    List<CheckItem> findAll();
 }

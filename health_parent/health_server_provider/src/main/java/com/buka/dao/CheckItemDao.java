@@ -6,6 +6,8 @@ import com.buka.pojo.CheckItem;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface CheckItemDao {
     void add(CheckItem checkItem);
 
@@ -18,4 +20,6 @@ public interface CheckItemDao {
     void edit(CheckItem checkItem);
 
     CheckItem findById(Integer id);
+
+    List<CheckItem> findAll();
 }
