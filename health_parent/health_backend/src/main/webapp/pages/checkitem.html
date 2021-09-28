@@ -240,7 +240,7 @@
                                     })
                                 }
                                 else{
-                                    this.$message().error(resp.data.message)
+                                    this.$message().error(resp.message)
                                 }
                             }).finally(()=>{
                                 this.findPage()
@@ -272,7 +272,7 @@
 									_this.findPage();
 									
 								}else{ // 服务器端处理失败
-									_this.$message.error(resp.data.message);
+									_this.$message.error(resp.message);
 								}
 							});
 						}else{ // 失败
@@ -314,7 +314,7 @@
                         else{
                             this.$message({
                                 type:"error",
-                                message:resp.data.message
+                                message:resp.message
                             })
                         }
                     })
@@ -340,7 +340,7 @@
                             else{
                                 this.$message({
                                     type:"error",
-                                    message:resp.data.message
+                                    message:resp.message
                                 })
                             }
                         })

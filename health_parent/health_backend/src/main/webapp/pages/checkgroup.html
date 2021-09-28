@@ -315,7 +315,7 @@
                         });
                     }
                     else {
-                        this.$message().error(resp.data.message)
+                        this.$message().error(resp.message)
                     }
                 }).finally(()=>{
                     this.findPage()
@@ -336,7 +336,7 @@
                         });
                     } else {
                         //新增失败，弹出错误提示
-                        this.$message.error(res.data.message);
+                        this.$message.error(res.message);
                     }
                     //不管操作成功与否都应该再次分页查询
                 }).finally(() => {
@@ -379,7 +379,7 @@
                         this.tableData = res.data.data;
                     } else {
                         //查询检查项数据失败
-                        this.$message.error(res.data.message);
+                        this.$message.error(res.message);
                     }
                 });
             },
@@ -392,7 +392,7 @@
                         this.formData = resp.data.data
                     }
                     else{
-                        this.$message().error(resp.data.message)
+                        this.$message().error(resp.message)
                     }
                 })
                 axios.get("/checkitem/findAll").then((res) => {
@@ -404,7 +404,7 @@
                                 this.checkitemIds = resp.data.data
                             }
                             else{
-                                this.$message().error(resp.data.message);
+                                this.$message().error(resp.message);
                             }
                         })
                     } else {
@@ -434,7 +434,7 @@
                                 type:'success'
                             })
                         }else{
-                            this.$message().error(resp.data.message);
+                            this.$message().error(resp.message);
                         }
                     }).finally(()=>{
                         this.findPage()
