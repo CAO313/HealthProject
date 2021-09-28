@@ -13,6 +13,7 @@
         <module>health_common</module>
         <module>health_interface</module>
         <module>health_backend</module>
+        <module>health_job</module>
     </modules>
     <properties>
         <junit.version>4.12</junit.version>

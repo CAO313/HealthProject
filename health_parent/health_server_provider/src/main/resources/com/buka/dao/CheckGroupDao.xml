@@ -58,4 +58,7 @@
     <delete id="deleteById" parameterType="java.lang.Integer">
         delete from t_checkgroup where id = #{id}
     </delete>
+    <select id="findAll" resultType="com.buka.pojo.CheckGroup">
+        select * from t_checkgroup
+    </select>
 </mapper>

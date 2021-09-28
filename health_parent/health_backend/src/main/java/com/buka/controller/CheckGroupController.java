@@ -1,7 +1,6 @@
 package com.buka.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.alibaba.dubbo.rpc.filter.EchoFilter;
 import com.buka.constant.MessageConstant;
 import com.buka.entity.PageResult;
 import com.buka.entity.QueryPageBean;
@@ -9,12 +8,12 @@ import com.buka.entity.Result;
 import com.buka.pojo.CheckGroup;
 import com.buka.service.CheckGroupService;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.rmi.server.ExportException;
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/checkgroup")
@@ -77,5 +76,16 @@ public class CheckGroupController {
             return new Result(false,MessageConstant.DELETE_CHECKGROUP_FAIL);
         }
         return new Result(true,MessageConstant.DELETE_CHECKGROUP_SUCCESS);
+    }
+
+    @RequestMapping("/findAll")
+    public Result findAll(){
+        try{
+            List<CheckGroup> list = checkGroupService.findAll();
+            return new Result(true,MessageConstant.QUERY_CHECKGROUP_SUCCESS,list);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new Result(false,MessageConstant.QUERY_CHECKGROUP_FAIL);
+        }
     }
 }

@@ -5,6 +5,7 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface CheckGroupDao {
     void add(CheckGroup checkGroup);
@@ -24,4 +25,6 @@ public interface CheckGroupDao {
     int count(Integer id);
 
     void deleteById(Integer id);
+
+    List<CheckGroup> findAll();
 }
