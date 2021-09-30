@@ -1,6 +1,7 @@
 package com.buka.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class TSetmeal implements Serializable {
     private Integer id;
@@ -22,6 +23,16 @@ public class TSetmeal implements Serializable {
     private String attention;
 
     private String img;
+
+    public List<CheckGroup> getCheckGroups() {
+        return checkGroups;
+    }
+
+    public void setCheckGroups(List<CheckGroup> checkGroups) {
+        this.checkGroups = checkGroups;
+    }
+
+    private List<CheckGroup> checkGroups;
 
     public Integer getId() {
         return id;
@@ -116,6 +127,7 @@ public class TSetmeal implements Serializable {
                 ", remark='" + remark + '\'' +
                 ", attention='" + attention + '\'' +
                 ", img='" + img + '\'' +
+                ", checkGroups=" + checkGroups +
                 '}';
     }
 }

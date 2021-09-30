@@ -34,4 +34,6 @@ public interface TSetmealMapper {
     void addCheckGroups(Map<String,Integer> map);
 
     Page<TSetmeal> findPage(@Param("queryString") String queryString);
+
+    Integer[] findCheckGoupsByID(Integer id);
 }

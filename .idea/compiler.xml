@@ -10,6 +10,7 @@
         <module name="health_backend" />
         <module name="health_job" />
         <module name="health_common" />
+        <module name="health_mobile" />
         <module name="health_interface" />
       </profile>
     </annotationProcessing>
@@ -18,6 +19,7 @@
       <module name="health_common" target="1.8" />
       <module name="health_interface" target="1.8" />
       <module name="health_job" target="1.7" />
+      <module name="health_mobile" target="1.7" />
       <module name="health_parent" target="1.8" />
       <module name="health_server_provider" target="1.7" />
     </bytecodeTargetLevel>

@@ -3,6 +3,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/health_parent/health_backend" />
     <file type="web" url="file://$PROJECT_DIR$/health_parent/health_job" />
+    <file type="web" url="file://$PROJECT_DIR$/health_parent/health_mobile" />
     <file type="web" url="file://$PROJECT_DIR$/health_parent/health_server_provider" />
   </component>
   <component name="MavenProjectsManager">
@@ -10,11 +11,6 @@
       <list>
         <option value="$PROJECT_DIR$/health_parent/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/health_parent/health_server_provider/pom.xml" />
-      </set>
     </option>
   </component>
 </project>

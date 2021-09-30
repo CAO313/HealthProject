@@ -294,4 +294,7 @@
       where code=#{queryString} or name = #{queryString} or helpCode=#{queryString}
     </if>
   </select>
+  <select id="findCheckGoupsByID" resultType="java.lang.Integer">
+    select checkgroup_id from t_setmeal_checkgroup where setmeal_id = #{id}
+  </select>
 </mapper>

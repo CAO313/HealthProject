@@ -1,8 +1,8 @@
-D:\JAVA\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\service\impl\CheckGroupServiceImpl.java
-D:\JAVA\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\service\impl\OrderSettingServiceImpl.java
-D:\JAVA\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\service\impl\SetMealServiceImpl.java
-D:\JAVA\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\dao\OrderSettingDao.java
-D:\JAVA\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\dao\CheckGroupDao.java
-D:\JAVA\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\service\impl\CheckItemServiceImpl.java
-D:\JAVA\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\dao\CheckItemDao.java
-D:\JAVA\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\dao\TSetmealMapper.java
+D:\JAVA StudySpace\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\service\impl\OrderSettingServiceImpl.java
+D:\JAVA StudySpace\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\dao\CheckItemDao.java
+D:\JAVA StudySpace\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\dao\OrderSettingDao.java
+D:\JAVA StudySpace\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\dao\CheckGroupDao.java
+D:\JAVA StudySpace\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\service\impl\CheckGroupServiceImpl.java
+D:\JAVA StudySpace\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\service\impl\CheckItemServiceImpl.java
+D:\JAVA StudySpace\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\dao\TSetmealMapper.java
+D:\JAVA StudySpace\HealthProject\health_parent\health_server_provider\src\main\java\com\buka\service\impl\SetMealServiceImpl.java
