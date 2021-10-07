@@ -14,10 +14,16 @@ import com.buka.pojo.TSetmealExample;
 import com.buka.service.SetMealService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import redis.clients.jedis.JedisPool;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +40,10 @@ public class SetMealServiceImpl implements SetMealService {
     private CheckGroupDao checkGroupDao;
     @Autowired
     private CheckItemDao checkItemDao;
+    @Autowired
+    private FreeMarkerConfigurer freeMarkerConfigurer;
+    @Value("${out_put_path}")
+    private String outputPath;
     @Override
     public void add(Integer[] checkGroupIds, TSetmeal tSetmeal) {
             tSetmealMapper.insertSelective(tSetmeal);
@@ -45,6 +55,7 @@ public class SetMealServiceImpl implements SetMealService {
             map.put("checkGroupID",checkGroupId);
             tSetmealMapper.addCheckGroups(map);
         }
+        this.staticHTML();
     }
 
     @Override
@@ -82,5 +93,41 @@ public class SetMealServiceImpl implements SetMealService {
         tSetmeal.setCheckGroups(checkGroups);
         System.out.println(tSetmeal);
         return tSetmeal;
+    }
+    //生成静态页面
+    public void staticHTML(){
+        List<TSetmeal> list = this.getAll();
+        this.staticSetMealListHTML(list);
+        this.staticSetMealDetailHTML(list);
+
+    }
+    //生成套餐列表页
+    public  void staticSetMealListHTML(List<TSetmeal> list){
+        Map<String,List<TSetmeal>> dataMap = new HashMap<>();
+        dataMap.put("setmealList",list);
+        this.generateHTML("mobile_setmeal.ftl","m_setmeal.html",dataMap);
+    }
+    //生成套餐详情页
+    public void staticSetMealDetailHTML(List<TSetmeal> list){
+        for (TSetmeal tSetmeal : list) {
+            Map<String,Object> dataMap = new HashMap();
+            dataMap.put("setmeal",this.findByID(tSetmeal.getId()));
+            this.generateHTML("mobile_setmeal_detail.ftl","setmeal_detail_"+tSetmeal.getId()+".html",dataMap);
+        }
+    }
+    
+    //生成静态页面通用
+    public void generateHTML(String templateName, String pageName, Map map){
+       Configuration configuration = freeMarkerConfigurer.getConfiguration();
+       configuration.setClassicCompatible(true);
+       try{
+           Template template = configuration.getTemplate(templateName);
+           File docFile = new File(outputPath+"/"+pageName);
+           Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(docFile)));
+           template.process(map,out);
+           out.close();
+       }catch (Exception e){
+           e.printStackTrace();
+       }
     }
 }

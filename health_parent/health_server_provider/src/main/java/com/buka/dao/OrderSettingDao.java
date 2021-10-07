@@ -16,4 +16,9 @@ public interface OrderSettingDao {
 
     List<OrderSetting> getOrderSettingByMonth(Map<String, String> map);
 
+    int getNumberByDate(Date orderDate);
+
+    int getReversionsByDate(Date orderDate);
+
+    OrderSetting getOrderSettingByDate(Date orderDate);
 }

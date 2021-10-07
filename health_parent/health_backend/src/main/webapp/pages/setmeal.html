@@ -96,7 +96,7 @@
                         <el-table-column label="操作" align="center">
                             <template slot-scope="scope">
                                 <el-button type="primary" size="mini">编辑</el-button>
-                                <el-button size="mini" type="danger">删除</el-button>
+                                <el-button size="mini" type="danger" @click="delete(scope.row)">删除</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -323,6 +323,22 @@
                 },
                 //切换页码
                 handleCurrentChange(currentPage) {
+                },
+                delete(row){
+                    this.$confirm("确定删除？","提示",{
+                        type:'warning'
+                    }).then(()=>{
+                        axios.get("/setmeal/deleteByID?setmealID="+row).then((resp)=>{
+                            if(resp.data.flag){
+                                this.$message({
+                                    type:'success',
+                                    message:resp.data.message
+                                })
+                            }else {
+                                this.$message.error(resp.data.message)
+                            }
+                        })
+                    })
                 }
             }
         })

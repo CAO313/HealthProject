@@ -33,7 +33,7 @@
             <div class="contentBox">
                 <div class="card">
                     <div class="">
-                        <img :src="'http://pqjroc654.bkt.clouddn.com/'+setmeal.img" width="100%" height="100%" />
+                        <img :src="'http://101.34.14.236:313/'+setmeal.img" width="100%" height="100%" />
                     </div>
                     <div class="project-text">
                         <h4 class="tit">{{setmeal.name}}</h4>
@@ -110,12 +110,45 @@
                         sex:'1'
                     }//预约信息
                 },
+                created(){
+                  axios.get("/setmeal/findById?id="+id).then((resp)=>{
+                      if(!resp.data.flag){
+                          this.$message.error(resp.data.message)
+                      }else{
+                          this.setmeal = resp.data.data
+                      }
+                    })
+                },
                 methods:{
                     //发送验证码
                     sendValidateCode(){
+                        var telephone = this.orderInfo.telephone
+                        if(!checkTelephone(telephone)){
+                            this.$message.error("请输入正确的手机号码")
+                        }
+                        validateCodeButton = $("#validateCodeButton")[0]
+                        clock = window.setInterval(doLoop,1000)
+                        axios.post("/validateCode/sendCode?telephone="+telephone).then((resp)=>{
+                            if(!resp.data.flag){
+                                this.$message.error(resp.data.message)
+                            }
+                        })
                     },
                     //提交预约
                     submitOrder(){
+                       var idCard = this.orderInfo.idCard
+                        if(!checkIdCard(idCard)){
+                            this.$message.error("请输入正确的身份证号")
+                            return false
+                        }
+                        axios.post("/order/submit",this.orderInfo).then((resp)=>{
+                            if(resp.data.flag){
+                                    window.location.href="orderSuccess.html?orderId="+resp.data.data
+                            }
+                            else{
+                                this.$message.error(resp.data.message)
+                            }
+                        })
                     }
                 },
                 mounted(){

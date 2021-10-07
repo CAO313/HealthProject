@@ -9,9 +9,18 @@
         insert into t_ordersetting(orderDate,number) values (#{orderDate},#{number})
     </insert>
     <update id="update" parameterType="com.buka.pojo.OrderSetting">
-        update t_ordersetting set number = #{number} where orderDate = #{orderDate}
+        update t_ordersetting set number = #{number}, reservations = #{reservations} where orderDate = #{orderDate}
     </update>
     <select id="getOrderSettingByMonth" parameterType="map" resultType="com.buka.pojo.OrderSetting">
         select * from t_ordersetting where orderDate between #{begin} and #{end}
+    </select>
+    <select id="getNumberByDate" resultType="java.lang.Integer">
+        select number from t_ordersetting where orderDate = #{orderDate}
+    </select>
+    <select id="getReversionsByDate" resultType="java.lang.Integer">
+        select reservations from t_ordersetting where orderDate = #{orderDate}
+    </select>
+    <select id="getOrderSettingByDate" resultType="com.buka.pojo.OrderSetting">
+        select * from t_ordersetting where orderDate = #{orderDate}
     </select>
 </mapper>

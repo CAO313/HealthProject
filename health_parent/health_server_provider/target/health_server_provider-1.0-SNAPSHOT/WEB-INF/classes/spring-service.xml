@@ -20,4 +20,9 @@
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
     <!--批量扫描，发布服务-->
     <dubbo:annotation package="com.buka.service"/>
+    <bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="templateLoaderPath" value="/WEB-INF/ftl/"/>
+    </bean>
+    <context:property-placeholder location="classpath:freemarker.properties"></context:property-placeholder>
 </beans>
