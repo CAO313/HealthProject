@@ -15,6 +15,7 @@
         <module>health_backend</module>
         <module>health_job</module>
         <module>health_mobile</module>
+        <module>spring_security</module>
     </modules>
     <properties>
         <junit.version>4.12</junit.version>

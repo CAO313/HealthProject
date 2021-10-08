@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+							http://www.springframework.org/schema/beans/spring-beans.xsd
+							http://www.springframework.org/schema/mvc
+							http://www.springframework.org/schema/mvc/spring-mvc.xsd
+							http://code.alibabatech.com/schema/dubbo
+							http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+							http://www.springframework.org/schema/context
+							http://www.springframework.org/schema/context/spring-context.xsd
+                          http://www.springframework.org/schema/security
+                          http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!--
+     http：用于定义相关权限控制
+     auto-config：是否自动配置设置为true时框架会提供默认的一些配置，例如提供默认的登录页面、登出处理等
+       设置为false时需要显示提供登录表单配置，否则会报错
+     use-expressions：用于指定intercept-url中的access属性是否使用表达式
+ -->
+
+    <security:http security="none" pattern="/index.html" />
+    <security:http security="none" pattern="/login.html" />
+
+    <security:http auto-config="false" use-expressions="true">
+        <security:form-login login-page="/login.html"
+                             username-parameter="username"
+                             password-parameter="password"
+                             login-processing-url="/login"
+                             default-target-url="/index.html"
+                             authentication-failure-url="/login.html"
+        />
+        <security:csrf disabled="true"></security:csrf>
+        <security:logout logout-url="/logout"
+                         logout-success-url="/login.html" invalidate-session="true"/>
+        <!--
+            intercept-url：定义一个拦截规则
+            pattern：对哪些url进行权限控制
+            access：在请求对应的URL时需要什么权限，默认配置时它应该是一个以逗号分隔的角色列表，
+            请求的用户只需拥有其中的一个角色就能成功访问对应的URL
+        -->
+        <!--只要认证通过就可以访问-->
+        <security:intercept-url pattern="/index.html" access="isAuthenticated()" />
+        <security:intercept-url pattern="/pages/a.html" access="isAuthenticated()"/>
+        <!--拥有add权限就可以访问b.html页面-->
+        <security:intercept-url pattern="/pages/b.html" access="hasAuthority('add')" />
+        <!--拥有ROLE_ADMIN角色就可以访问c.html页面-->
+        <security:intercept-url pattern="/pages/c.html" access="hasRole('ROLE_ADMIN')" />
+    </security:http>
+
+
+
+    <bean id="userService" class="com.buka.security.UserService"></bean>
+    <bean id="passwordEncoder"  class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    <!--
+        authentication-manager：认证管理器，用于处理认证操作
+    -->
+    <security:authentication-manager>
+        <!--
+authentication-manager：认证管理器，用于处理认证操作
+-->
+
+            <!--
+               authentication-provider：认证提供者，执行具体的认证逻辑
+            -->
+            <security:authentication-provider user-service-ref="userService">
+                <security:password-encoder ref="passwordEncoder" />
+            </security:authentication-provider>
+
+        <!--
+            authentication-provider：认证提供者，执行具体的认证逻辑
+        -->
+    </security:authentication-manager>
+    <context:annotation-config></context:annotation-config>
+
+    <mvc:default-servlet-handler></mvc:default-servlet-handler>
+    <mvc:annotation-driven></mvc:annotation-driven>
+    <context:component-scan base-package="com.buka.Controller" >
+</context:component-scan>
+    <!--开启注解方式权限控制-->
+    <security:global-method-security pre-post-annotations="enabled" />
+
+</beans>

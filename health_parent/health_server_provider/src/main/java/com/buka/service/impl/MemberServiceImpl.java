@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.buka.dao.MemberDao;
 import com.buka.pojo.Member;
 import com.buka.service.MemberService;
+import com.buka.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,8 @@ public class MemberServiceImpl implements MemberService {
         String password = member.getPassword();
         if(password!=null){
             //加密
+            password = MD5Utils.md5(password);
+            member.setPassword(password);
         }
         memberDao.add(member);
     }

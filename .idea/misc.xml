@@ -5,6 +5,7 @@
     <file type="web" url="file://$PROJECT_DIR$/health_parent/health_job" />
     <file type="web" url="file://$PROJECT_DIR$/health_parent/health_mobile" />
     <file type="web" url="file://$PROJECT_DIR$/health_parent/health_server_provider" />
+    <file type="web" url="file://$PROJECT_DIR$/health_parent/spring_security" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
