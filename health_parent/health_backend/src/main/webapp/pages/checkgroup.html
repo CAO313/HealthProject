@@ -315,7 +315,7 @@
                         });
                     }
                     else {
-                        this.$message().error(resp.message)
+                        this.$message.error(resp.message)
                     }
                 }).finally(()=>{
                     this.findPage()
@@ -392,7 +392,7 @@
                         this.formData = resp.data.data
                     }
                     else{
-                        this.$message().error(resp.message)
+                        this.$message.error(resp.message)
                     }
                 })
                 axios.get("/checkitem/findAll").then((res) => {
@@ -404,7 +404,7 @@
                                 this.checkitemIds = resp.data.data
                             }
                             else{
-                                this.$message().error(resp.message);
+                                this.$message.error(resp.message);
                             }
                         })
                     } else {
@@ -434,7 +434,7 @@
                                 type:'success'
                             })
                         }else{
-                            this.$message().error(resp.message);
+                            this.$message.error(resp.message);
                         }
                     }).finally(()=>{
                         this.findPage()

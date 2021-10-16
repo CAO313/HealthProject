@@ -297,4 +297,7 @@
   <select id="findCheckGoupsByID" resultType="java.lang.Integer">
     select checkgroup_id from t_setmeal_checkgroup where setmeal_id = #{id}
   </select>
+  <select id="findSetMealCount" resultType="map">
+    select s.name,count(o.id) as value from t_setmeal s,t_order o where s.id = o.setmeal_id group by s.name
+  </select>
 </mapper>

@@ -43,8 +43,9 @@
                                 <el-dropdown-item divided>
                                     <span style="display:block;">修改密码</span>
                                 </el-dropdown-item>
-                                <el-dropdown-item divided>
-                                        <span style="display:block;">退出</span>
+                                    <el-dropdown-item divided>
+                                        <span style="display:block;"><a href="/logout">退出</a></span>
+                                    </el-dropdown-item>
                                     </el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
@@ -108,7 +109,7 @@
                         {
                             "path": "/2-3",
                             "title": "会员统计",
-                            "linkUrl":"all-item-list.html",
+                            "linkUrl":"report_member.html",
                             "children":[]
                         },
                     ]
@@ -170,13 +171,26 @@
                     "children":[//是否有子菜单，若没有，则为[]
                         {
                             "path": "/5-1",
-                            "title": "工作量统计",
-                            "linkUrl":"all-medical-list.html",
+                            "title": "预约占比",
+                            "linkUrl":"report_setmeal.html",
+                            "children":[]
+                        },
+                        {
+                            "path": "/5-2",
+                            "title": "运营数据统计",
+                            "linkUrl":"report_business.html",
                             "children":[]
                         }
                     ]
                 }
             ]
+        },
+        created(){
+            axios.get("/user/getUserName").then((resp)=>{
+                if(resp.data.flag){
+                    this.username = resp.data.data
+                }
+            })
         }
     });
     $(function() {

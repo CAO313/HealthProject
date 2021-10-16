@@ -29,4 +29,11 @@ public class MemberServiceImpl implements MemberService {
         }
         memberDao.add(member);
     }
+
+    @Override
+    public Integer countByMonth(String date) {
+        String newDate = date+".31";
+       Integer count = memberDao.findMemberCountBeforeDate(newDate);
+        return count;
+    }
 }

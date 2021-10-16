@@ -94,6 +94,12 @@ public class SetMealServiceImpl implements SetMealService {
         System.out.println(tSetmeal);
         return tSetmeal;
     }
+
+    @Override
+    public List<Map> findSetMealCount() {
+       return tSetmealMapper.findSetMealCount();
+    }
+
     //生成静态页面
     public void staticHTML(){
         List<TSetmeal> list = this.getAll();
@@ -130,4 +136,5 @@ public class SetMealServiceImpl implements SetMealService {
            e.printStackTrace();
        }
     }
+
 }

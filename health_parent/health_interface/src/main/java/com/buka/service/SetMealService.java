@@ -5,6 +5,7 @@ import com.buka.entity.QueryPageBean;
 import com.buka.pojo.TSetmeal;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SetMealService {
 
@@ -15,4 +16,6 @@ public interface SetMealService {
     List<TSetmeal> getAll();
 
     TSetmeal findByID(Integer id);
+
+    List<Map> findSetMealCount();
 }

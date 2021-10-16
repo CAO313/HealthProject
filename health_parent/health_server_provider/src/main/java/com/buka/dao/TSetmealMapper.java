@@ -36,4 +36,6 @@ public interface TSetmealMapper {
     Page<TSetmeal> findPage(@Param("queryString") String queryString);
 
     Integer[] findCheckGoupsByID(Integer id);
+
+    List<Map> findSetMealCount();
 }

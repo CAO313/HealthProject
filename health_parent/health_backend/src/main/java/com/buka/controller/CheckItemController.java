@@ -8,6 +8,7 @@ import com.buka.entity.Result;
 import com.buka.pojo.CheckItem;
 import com.buka.service.CheckItemService;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,12 +31,13 @@ public class CheckItemController {
         }
         return new Result(true,MessageConstant.ADD_CHECKITEM_SUCCESS);
     }
-
+    @PreAuthorize("hasAuthority('CHECKITEM_QUERY')")
     @RequestMapping("/pagequery")
     public PageResult findPage(@RequestBody QueryPageBean queryPageBean){
        return checkItemService.findPage(queryPageBean);
     }
 
+    @PreAuthorize("hasAuthority('CHECKITEM_DELETE')")
     @RequestMapping("/deleteById")
     public Result deleteById(@Param("id") Integer id){
         try {

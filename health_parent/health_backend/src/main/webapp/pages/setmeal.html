@@ -283,7 +283,7 @@
                             })
                         }
                         else{
-                            this.$message().error(resp.message)
+                            this.$message.error(resp.message)
                         }
                     }).finally(()=>{
                         this.findPage();
@@ -317,7 +317,7 @@
                             this.tableData = resp.data.data
                         }
                         else{
-                            this.$message().error(resp.message)
+                            this.$message.error(resp.message)
                         }
                     })
                 },

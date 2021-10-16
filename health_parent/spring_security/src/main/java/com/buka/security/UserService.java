@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class UserService implements UserDetailsService {
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private  BCryptPasswordEncoder passwordEncoder;
     //模拟数据库中的用户数据
     public static Map<String, User> map = new HashMap<>();
     static {
@@ -57,5 +57,10 @@ public class UserService implements UserDetailsService {
 
         UserDetails user = new org.springframework.security.core.userdetails.User(username,passwordInDb,list);
         return user;
+    }
+
+    public static void main(String[] args) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        System.out.println( passwordEncoder.matches("1234","$2a$10$zYJRscVUgHX1wqwu90WereuTmIg6h/JGirGG4SWBsZ60wVPCgtF8W"));
     }
 }
