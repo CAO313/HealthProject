@@ -16,3 +16,6 @@
 数据库：mysql<br>
 持久层：mybatis<br>
 缓存：redis<br>
+定时任务:quartz<br>
+图形化报表：Charts<br>
+文件服务:nginx+FTP文件服务器
