@@ -9,3 +9,10 @@
 运营数据报表统计<br>
 认证和授权<br>
 在用户预约方面实现了通过手机号快速登陆、预约体检套餐的功能
+# 技术栈
+分布式框架：dubbo<br>
+项目业务框架：SSM<br>
+认证和授权：Spring security<br>
+数据库：mysql<br>
+持久层：mybatis<br>
+缓存：redis<br>
